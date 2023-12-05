@@ -4,14 +4,11 @@ import com.codymikol.manager.BodyPartManager
 import com.codymikol.manager.MonsterManager
 import com.codymikol.manager.NewMonsterRequest
 import io.ktor.http.*
-import io.ktor.resources.*
 import io.ktor.server.application.*
 import io.ktor.server.http.content.*
-import io.ktor.server.plugins.ContentTransformationException
 import io.ktor.server.plugins.cors.routing.*
+import io.ktor.server.plugins.openapi.*
 import io.ktor.server.request.*
-import io.ktor.server.resources.*
-import io.ktor.server.resources.Resources
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
@@ -22,7 +19,6 @@ data class Error(
 )
 
 fun Application.configureRouting() {
-    install(Resources)
 
     install(CORS) {
         allowMethod(HttpMethod.Get)
@@ -34,6 +30,8 @@ fun Application.configureRouting() {
     }
 
     routing {
+
+        openAPI(path="openapi", swaggerFile = "openapi/documentation.yaml")
 
         get("/part") {
 
@@ -72,11 +70,10 @@ fun Application.configureRouting() {
 
         }
 
-        staticResources("/assets", "assets")
+        staticResources("/assets", "assets", index = "index.html")
+
+        staticResources("/", "root", index = "index.html")
+
 
     }
 }
-
-@Serializable
-@Resource("/articles")
-class Articles(val sort: String? = "new")

@@ -1,0 +1,1 @@
+./gradlew assemble && scp ./build/libs/monsterfactory-all.jar cody@mywifisign.com:~/monsterfactory-api/monsterfactory.jar && ssh cody@mywifisign.com 'service '
