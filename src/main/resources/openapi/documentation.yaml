@@ -1,23 +1,159 @@
-openapi: "3.0.3"
+openapi: 3.0.3
 info:
-  title: "Application API"
-  description: "Application API"
-  version: "1.0.0"
+  title: Monster Factory
+  description: "A server that allows you to build your very own spooky monster"
+  contact:
+    email: cmikol@jhacorp.com
+  version: 1.0.0
+externalDocs:
+  description: Visit the monster-factory website
+  url: https://monster-factory.online
 servers:
-  - url: "http://0.0.0.0:8080"
+  - url: https://monster-factory.online
+tags:
+  - name: part
+    description: Heads, torsos, and legs that serve as building blocks for monsters.
+  - name: monster
+    description: Monsters that are a combination of a head, torso, legs, and a name.
 paths:
-  /:
+  /part:
     get:
-      description: "Hello World!"
+      tags:
+        - part
+      summary: "Query monster parts"
+      description: "Query all monster heads, toroso, and legs."
+      parameters:
+        - name: segment
+          in: query
+          description: Which segment to filter by
+          schema:
+            type: string
+            enum: [HEAD,TORSO,LEGS]
+        - name: category
+          in: query
+          description: Which category to filter by
+          schema:
+            type: string
+            enum: [OCCUPATION,MONSTER]
+        - name: creature
+          in: query
+          description: Which creature to filter by
+          schema:
+            type: string
+            enum: [ZOMBIE,VAMPIRE,GHOST,WEREWOLF,WITCH,ASTRONAUT,TEACHER,PLUMBER,PROGRAMMER,ARTIST]
+      operationId: getAllMonsterParts
       responses:
-        "200":
-          description: "OK"
+        '200':
+          description: Successful operation
           content:
-            text/plain:
+            application/json:
               schema:
-                type: "string"
+                $ref: '#/components/schemas/PartArray'
+  /monster:
+    post:
+      tags:
+        - monster
+      summary: Create a monster
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonsterRequest'
+      description: 'Create a monster from a combination of a head, torso, legs, and a name.'
+      operationId: createMonster
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Monster'
+        '400':
+          description: Invalid Monster Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
               examples:
-                Example#1:
-                  value: "Hello World!"
+                'missing-fields':
+                  summary: 'When one or more required fields are missing from the request'
+                  value:
+                    message: 'Invalid Monster, fields required are { name, leg, head, torso }'
+                'boring-monster':
+                  summary: 'When head, leg, and torso all come from the same CATEGORY'
+                  value:
+                    message: 'This monster is very boring, it just looks like a regular old zombie'
 components:
   schemas:
+    Monster:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "0a66d9ab-0a55-4afd-a53d-c97648475e19"
+        name:
+          type: string
+          example: "ZomboWereWitch"
+        head:
+          type: string
+          example: "zombie-head"
+        torso:
+          type: string
+          example: "werewolf-torso"
+        leg:
+          type: string
+          example: "witch-leg"
+    MonsterRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "ZomboWereWitch"
+        head:
+          type: string
+          example: "zombie-head"
+        torso:
+          type: string
+          example: "werewolf-torso"
+        leg:
+          type: string
+          example: "witch-leg"
+    PartArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/Part'
+    Part:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "zombie-head"
+        category:
+          type: string
+          example: "MONSTER"
+        creature:
+          type: string
+          example: "ZOMBIE"
+        segment:
+          type: string
+          example: "HEAD"
+        name:
+          type: string
+          example: "Zombie Head"
+        src:
+          type: string
+          example: "/assets/images/witch/zombie-head.png"
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "An error occurred"
+  requestBodies:
+    MonsterRequest:
+      description: The request to create a new monster
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MonsterRequest'

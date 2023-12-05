@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Application API</title>
+  <title>Monster Factory</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8" />
@@ -689,6 +689,96 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+            defs["Error"] = {
+  "type" : "object",
+  "properties" : {
+    "message" : {
+      "type" : "string",
+      "example" : "An error occurred"
+    }
+  }
+};
+            defs["Monster"] = {
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "type" : "string",
+      "example" : "0a66d9ab-0a55-4afd-a53d-c97648475e19"
+    },
+    "name" : {
+      "type" : "string",
+      "example" : "ZomboWereWitch"
+    },
+    "head" : {
+      "type" : "string",
+      "example" : "zombie-head"
+    },
+    "torso" : {
+      "type" : "string",
+      "example" : "werewolf-torso"
+    },
+    "leg" : {
+      "type" : "string",
+      "example" : "witch-leg"
+    }
+  }
+};
+            defs["MonsterRequest"] = {
+  "type" : "object",
+  "properties" : {
+    "name" : {
+      "type" : "string",
+      "example" : "ZomboWereWitch"
+    },
+    "head" : {
+      "type" : "string",
+      "example" : "zombie-head"
+    },
+    "torso" : {
+      "type" : "string",
+      "example" : "werewolf-torso"
+    },
+    "leg" : {
+      "type" : "string",
+      "example" : "witch-leg"
+    }
+  }
+};
+            defs["Part"] = {
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "type" : "string",
+      "example" : "zombie-head"
+    },
+    "category" : {
+      "type" : "string",
+      "example" : "MONSTER"
+    },
+    "creature" : {
+      "type" : "string",
+      "example" : "ZOMBIE"
+    },
+    "segment" : {
+      "type" : "string",
+      "example" : "HEAD"
+    },
+    "name" : {
+      "type" : "string",
+      "example" : "Zombie Head"
+    },
+    "src" : {
+      "type" : "string",
+      "example" : "/assets/images/witch/zombie-head.png"
+    }
+  }
+};
+            defs["PartArray"] = {
+  "type" : "array",
+  "items" : {
+    "$ref" : "#/components/schemas/Part"
+  }
+};
   </script>
 
   <div class="container-fluid">
@@ -705,9 +795,13 @@
             -->
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
-                  <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="rootGet" class="">
-                      <a href="#api-Default-rootGet">rootGet</a>
+                  <li class="nav-header" data-group="Monster"><a href="#api-Monster">API Methods - Monster</a></li>
+                    <li data-group="Monster" data-name="createMonster" class="">
+                      <a href="#api-Monster-createMonster">createMonster</a>
+                    </li>
+                  <li class="nav-header" data-group="Part"><a href="#api-Part">API Methods - Part</a></li>
+                    <li data-group="Part" data-name="getAllMonsterParts" class="">
+                      <a href="#api-Part-getAllMonsterParts">getAllMonsterParts</a>
                     </li>
           </ul>
         </nav>
@@ -715,7 +809,7 @@
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>Application API</h1>
+            <h1>Monster Factory</h1>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -724,100 +818,105 @@
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
-            <div>Application API</div>
+            <div>A server that allows you to build your very own spooky monster</div>
           </div>
         </div>
         <div id="sections">
-                <section id="api-Default">
-                  <h1>Default</h1>
-                    <div id="api-Default-rootGet">
-                      <article id="api-Default-rootGet-0" data-group="User" data-name="rootGet" data-version="0">
+                <section id="api-Monster">
+                  <h1>Monster</h1>
+                    <div id="api-Monster-createMonster">
+                      <article id="api-Monster-createMonster-0" data-group="User" data-name="createMonster" data-version="0">
                         <div class="pull-left">
-                          <h1>rootGet</h1>
-                          <p></p>
+                          <h1>createMonster</h1>
+                          <p>Create a monster</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Hello World!</p>
+                        <p class="marked">Create a monster from a combination of a head, torso, legs, and a name.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/monster</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-rootGet-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-rootGet-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-rootGet-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-rootGet-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-rootGet-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-rootGet-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Monster-createMonster-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Monster-createMonster-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Monster-createMonster-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Monster-createMonster-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Monster-createMonster-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Monster-createMonster-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Monster-createMonster-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Monster-createMonster-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Monster-createMonster-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Monster-createMonster-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Monster-createMonster-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-rootGet-0-curl">
-                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
--H "Accept: text/plain"\
-"http://0.0.0.0:8080/"</code></pre>
+                          <div class="tab-pane active" id="examples-Monster-createMonster-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "Accept: application/json"\
+-H "Content-Type: application/json"\
+"https://monster-factory.online/monster"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-rootGet-0-java">
+                          <div class="tab-pane" id="examples-Monster-createMonster-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.DefaultApi;
+import io.swagger.client.api.MonsterApi;
 
 import java.io.File;
 import java.util.*;
 
-public class DefaultApiExample {
+public class MonsterApiExample {
 
     public static void main(String[] args) {
         
-        DefaultApi apiInstance = new DefaultApi();
+        MonsterApi apiInstance = new MonsterApi();
+        MonsterRequest body = ; // MonsterRequest | 
         try {
-            'String' result = apiInstance.rootGet();
+            Monster result = apiInstance.createMonster(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#rootGet");
+            System.err.println("Exception when calling MonsterApi#createMonster");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-rootGet-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+                          <div class="tab-pane" id="examples-Monster-createMonster-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.MonsterApi;
 
-public class DefaultApiExample {
+public class MonsterApiExample {
 
     public static void main(String[] args) {
-        DefaultApi apiInstance = new DefaultApi();
+        MonsterApi apiInstance = new MonsterApi();
+        MonsterRequest body = ; // MonsterRequest | 
         try {
-            'String' result = apiInstance.rootGet();
+            Monster result = apiInstance.createMonster(body);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#rootGet");
+            System.err.println("Exception when calling MonsterApi#createMonster");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-rootGet-0-groovy">
+  <div class="tab-pane" id="examples-Monster-createMonster-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-rootGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">
-DefaultApi *apiInstance = [[DefaultApi alloc] init];
+                            <div class="tab-pane" id="examples-Monster-createMonster-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">MonsterRequest *body = ; // 
 
-[apiInstance rootGetWithCompletionHandler: 
-              ^('String' output, NSError* error) {
+MonsterApi *apiInstance = [[MonsterApi alloc] init];
+
+// Create a monster
+[apiInstance createMonsterWith:body
+              completionHandler: ^(Monster output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -828,10 +927,12 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-rootGet-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var ApplicationApi = require('application_api');
+                            <div class="tab-pane" id="examples-Monster-createMonster-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var MonsterFactory = require('monster_factory');
 
-var api = new ApplicationApi.DefaultApi()
+var api = new MonsterFactory.MonsterApi()
+var body = ; // {{MonsterRequest}} 
+
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -839,14 +940,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.rootGet(callback);
+api.createMonster(body, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-rootGet-0-angular">
+                            <!--<div class="tab-pane" id="examples-Monster-createMonster-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-rootGet-0-csharp">
+                            <div class="tab-pane" id="examples-Monster-createMonster-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -855,21 +956,23 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class rootGetExample
+    public class createMonsterExample
     {
         public void main()
         {
 
-            var apiInstance = new DefaultApi();
+            var apiInstance = new MonsterApi();
+            var body = new MonsterRequest(); // MonsterRequest | 
 
             try
             {
-                'String' result = apiInstance.rootGet();
+                // Create a monster
+                Monster result = apiInstance.createMonster(body);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling DefaultApi.rootGet: " + e.Message );
+                Debug.Print("Exception when calling MonsterApi.createMonster: " + e.Message );
             }
         }
     }
@@ -877,38 +980,40 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-rootGet-0-php">
+                            <div class="tab-pane" id="examples-Monster-createMonster-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\ApiDefaultApi();
+$api_instance = new Swagger\Client\ApiMonsterApi();
+$body = ; // MonsterRequest | 
 
 try {
-    $result = $api_instance->rootGet();
+    $result = $api_instance->createMonster($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->rootGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MonsterApi->createMonster: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-rootGet-0-perl">
+                            <div class="tab-pane" id="examples-Monster-createMonster-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::DefaultApi;
+use WWW::SwaggerClient::MonsterApi;
 
-my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $api_instance = WWW::SwaggerClient::MonsterApi->new();
+my $body = WWW::SwaggerClient::Object::MonsterRequest->new(); # MonsterRequest | 
 
 eval { 
-    my $result = $api_instance->rootGet();
+    my $result = $api_instance->createMonster(body => $body);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->rootGet: $@\n";
+    warn "Exception when calling MonsterApi->createMonster: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-rootGet-0-python">
+                            <div class="tab-pane" id="examples-Monster-createMonster-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -916,13 +1021,15 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.DefaultApi()
+api_instance = swagger_client.MonsterApi()
+body =  # MonsterRequest | 
 
 try: 
-    api_response = api_instance.root_get()
+    # Create a monster
+    api_response = api_instance.create_monster(body)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DefaultApi->rootGet: %s\n" % e)</code></pre>
+    print("Exception when calling MonsterApi->createMonster: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -930,41 +1037,78 @@ except ApiException as e:
 
 
 
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/MonsterRequest"
+      }
+    }
+  },
+  "required" : true
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_createMonster_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_createMonster_body"></div>
+                                </td>
+                                </tr>
+                            </table>
 
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - OK </h3>
+                            <h3> Status: 200 - Successful operation </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-rootGet-200-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-createMonster-200-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-rootGet-200-schema">
-                                  <div id='responses-rootGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-createMonster-200-schema">
+                                  <div id='responses-createMonster-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "OK",
+  "description" : "Successful operation",
   "content" : {
-    "text/plain" : {
+    "application/json" : {
       "schema" : {
-        "type" : "string",
-        "x-content-type" : "text/plain"
-      },
-      "examples" : {
-        "Example#1" : {
-          "value" : "Hello World!"
-        }
+        "$ref" : "#/components/schemas/Monster"
       }
     }
   }
 };
-                                        var schema = schemaWrapper.content["text/plain"].schema;
+                                        var schema = schemaWrapper.content["application/json"].schema;
                                         if (schema.$ref != null) {
                                           schema = defsParser.$refs.get(schema.$ref);
                                         } else {
@@ -977,14 +1121,429 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-rootGet-200-schema-data').val(stringify(schema));
-                                        var result = $('#responses-rootGet-200-schema-200');
+                                        $('#responses-createMonster-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-createMonster-200-schema-200');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-rootGet-200-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-createMonster-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Invalid Monster Request </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-createMonster-400-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-createMonster-400-schema">
+                                  <div id='responses-createMonster-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Invalid Monster Request",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Error"
+      },
+      "examples" : {
+        "missing-fields" : {
+          "summary" : "When one or more required fields are missing from the request",
+          "value" : {
+            "message" : "Invalid Monster, fields required are { name, leg, head, torso }"
+          }
+        },
+        "boring-monster" : {
+          "summary" : "When head, leg, and torso all come from the same CATEGORY",
+          "value" : {
+            "message" : "This monster is very boring, it just looks like a regular old zombie"
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-createMonster-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-createMonster-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-createMonster-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
+                <section id="api-Part">
+                  <h1>Part</h1>
+                    <div id="api-Part-getAllMonsterParts">
+                      <article id="api-Part-getAllMonsterParts-0" data-group="User" data-name="getAllMonsterParts" data-version="0">
+                        <div class="pull-left">
+                          <h1>getAllMonsterParts</h1>
+                          <p>Query monster parts</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Query all monster heads, toroso, and legs.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/part</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Part-getAllMonsterParts-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Part-getAllMonsterParts-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Part-getAllMonsterParts-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Part-getAllMonsterParts-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Part-getAllMonsterParts-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Part-getAllMonsterParts-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Part-getAllMonsterParts-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Part-getAllMonsterParts-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Part-getAllMonsterParts-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Part-getAllMonsterParts-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Part-getAllMonsterParts-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Part-getAllMonsterParts-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: application/json"\
+"https://monster-factory.online/part?segment=&category=&creature="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Part-getAllMonsterParts-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.PartApi;
+
+import java.io.File;
+import java.util.*;
+
+public class PartApiExample {
+
+    public static void main(String[] args) {
+        
+        PartApi apiInstance = new PartApi();
+        String segment = segment_example; // String | Which segment to filter by
+        String category = category_example; // String | Which category to filter by
+        String creature = creature_example; // String | Which creature to filter by
+        try {
+            PartArray result = apiInstance.getAllMonsterParts(segment, category, creature);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PartApi#getAllMonsterParts");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Part-getAllMonsterParts-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.PartApi;
+
+public class PartApiExample {
+
+    public static void main(String[] args) {
+        PartApi apiInstance = new PartApi();
+        String segment = segment_example; // String | Which segment to filter by
+        String category = category_example; // String | Which category to filter by
+        String creature = creature_example; // String | Which creature to filter by
+        try {
+            PartArray result = apiInstance.getAllMonsterParts(segment, category, creature);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PartApi#getAllMonsterParts");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Part-getAllMonsterParts-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Part-getAllMonsterParts-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *segment = segment_example; // Which segment to filter by (optional)
+String *category = category_example; // Which category to filter by (optional)
+String *creature = creature_example; // Which creature to filter by (optional)
+
+PartApi *apiInstance = [[PartApi alloc] init];
+
+// Query monster parts
+[apiInstance getAllMonsterPartsWith:segment
+    category:category
+    creature:creature
+              completionHandler: ^(PartArray output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Part-getAllMonsterParts-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var MonsterFactory = require('monster_factory');
+
+var api = new MonsterFactory.PartApi()
+var opts = { 
+  'segment': segment_example, // {{String}} Which segment to filter by
+  'category': category_example, // {{String}} Which category to filter by
+  'creature': creature_example // {{String}} Which creature to filter by
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getAllMonsterParts(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Part-getAllMonsterParts-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Part-getAllMonsterParts-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getAllMonsterPartsExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new PartApi();
+            var segment = segment_example;  // String | Which segment to filter by (optional) 
+            var category = category_example;  // String | Which category to filter by (optional) 
+            var creature = creature_example;  // String | Which creature to filter by (optional) 
+
+            try
+            {
+                // Query monster parts
+                PartArray result = apiInstance.getAllMonsterParts(segment, category, creature);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling PartApi.getAllMonsterParts: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Part-getAllMonsterParts-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiPartApi();
+$segment = segment_example; // String | Which segment to filter by
+$category = category_example; // String | Which category to filter by
+$creature = creature_example; // String | Which creature to filter by
+
+try {
+    $result = $api_instance->getAllMonsterParts($segment, $category, $creature);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PartApi->getAllMonsterParts: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Part-getAllMonsterParts-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::PartApi;
+
+my $api_instance = WWW::SwaggerClient::PartApi->new();
+my $segment = segment_example; # String | Which segment to filter by
+my $category = category_example; # String | Which category to filter by
+my $creature = creature_example; # String | Which creature to filter by
+
+eval { 
+    my $result = $api_instance->getAllMonsterParts(segment => $segment, category => $category, creature => $creature);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling PartApi->getAllMonsterParts: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Part-getAllMonsterParts-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.PartApi()
+segment = segment_example # String | Which segment to filter by (optional)
+category = category_example # String | Which category to filter by (optional)
+creature = creature_example # String | Which creature to filter by (optional)
+
+try: 
+    # Query monster parts
+    api_response = api_instance.get_all_monster_parts(segment=segment, category=category, creature=creature)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling PartApi->getAllMonsterParts: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">segment</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_getAllMonsterParts_segment">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Which segment to filter by
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">category</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_getAllMonsterParts_category">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Which category to filter by
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">creature</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_getAllMonsterParts_creature">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Which creature to filter by
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Successful operation </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getAllMonsterParts-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getAllMonsterParts-200-schema">
+                                  <div id='responses-getAllMonsterParts-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Successful operation",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/PartArray"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getAllMonsterParts-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getAllMonsterParts-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getAllMonsterParts-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -997,7 +1556,7 @@ except ApiException as e:
             <div id="api-_footer">
               <p>Suggestions, contact, support and error reporting;
                   <div class="app-desc">Information URL: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
-                  <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+                  <div class="app-desc">Contact Info: <a href="cmikol@jhacorp.com">cmikol@jhacorp.com</a></div>
               </p>
                 <div class="license-info">All rights reserved</div>
                 <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
