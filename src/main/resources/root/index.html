@@ -1,330 +1,185 @@
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
-    <title>The monster factory proof of concept.</title>
+    <link rel="preload"
+          href="/assets/images/icons/briefcase-red.svg"
+          as="image"
+          type="image/svg+xml" />
+
+    <link rel="preload"
+          href="/assets/images/icons/pencil-red.svg"
+          as="image"
+          type="image/svg+xml" />
+
+    <link rel="preload"
+          href="/assets/images/icons/bolt-red.svg"
+          as="image"
+          type="image/svg+xml" />
+
+    <title>Monster Factory</title>
 
     <style>
 
         body {
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --control-size: 300px;
-        }
-
-        h1 {
-            margin-top: 0;
-        }
-
-        label, h1 {
-            color: #000;
-            font-family: VT323;
-            font-size: 56px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-        }
-
-        button {
-            color: #FFF;
-            font-family: VT323;
-            font-size: 40px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-        }
-
-        body {
             background: linear-gradient(218deg, #EE9F9A 8.39%, #CAF1CC 94.08%);
-            height: 100dvh;
-            width: 100dvw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .monster-selector {
-            position: relative;
-            height: var(--control-size);
-            width: var(--control-size);
-            background: #C3C775;
-            border-radius: 20px;
-            border: 10px solid #000;
-        }
-
-        .slider {
-            height: calc(var(--control-size) / 3);
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-right: 24px;
-            padding-left: 24px;
-        }
-
-        img {
-            height: var(--control-size);
-            width: var(--control-size);
-            position: absolute;
-            top: 0;
-            pointer-events: none;
-        }
-
-        .frame {
             width: 100vw;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
         }
 
-
-        button {
-            cursor: pointer;
-        }
-
-        .slider > button {
-            width: 64px;
-            height: 64px;
-            background-color: #AF1455;
-            filter: drop-shadow(6px 6px 0px #000);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            border-style: solid;
-            border-width: 6px;
-            border-color: #000;
-            fill: #AF1455;
-        }
-
-        .error {
-            font-family: VT323;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            color: #AF1455;
-            margin-top: 12px;
-            font-size: 32px;
-        }
-
-        .arrow-icon {
-            height: 32px;
-            width: 32px;
-            position: relative;
-        }
-
-        .container {
-            border-radius: 32px;
-            border: 10px solid #000;
-            background: #E2E2E2;
-            box-shadow: 12px 12px 0px 0px #000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            padding: 40px;
-        }
-
-        input {
-            border-radius: 12px;
-            border: 6px solid #000;
-            background: #FFF;
-            display: flex;
-            width: calc(500px - 26px);
-            height: 60px;
-            align-items: center;
-            color: #000;
-
-            font-family: VT323;
-            font-size: 40px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            padding-left: 16px;
-        }
-
-        button.submit {
-            border-radius: 12px;
-            border: 6px solid #000;
-            background: #525252;
-            box-shadow: 6px 6px 0px 0px #000;
-            /*height: 32px;*/
-            color: #FFF;
-            width: 500px;
-            font-size: 40px;
-
-            margin-top: 8px;
-            font-family: VT323;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            padding-top: 8px;
-            padding-bottom: 8px;
-        }
-
-        .controls {
+        header {
             display: flex;
             flex-direction: row;
+            justify-content: center;
             align-items: center;
         }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        img.medium {
+            height: 160px;
+            width: 160px;
+        }
+
+        img.small {
+            height: 120px;
+            width: 120px;
+            position: relative;
+            top: 10px;
+        }
+
+        section.resources {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        a {
+            text-align: center;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        a::before, a::after {
+            margin-left: 12px;
+            margin-right: 12px;
+        }
+
+        /*briefcase*/
+
+        a.briefcase::after, a.briefcase::before  {
+            content: url(/assets/images/icons/briefcase.svg);
+        }
+
+        a.briefcase:hover::after, a.briefcase:hover::before  {
+            content: url(/assets/images/icons/briefcase-red.svg);
+        }
+
+        /*figma*/
+
+        a.figma::after, a.figma::before  {
+            content: url(/assets/images/icons/pencil.svg);
+        }
+
+        a.figma:hover::after, a.figma:hover::before  {
+            content: url(/assets/images/icons/pencil-red.svg);
+        }
+
+        /*api*/
+
+        a.api::after, a.api::before  {
+            content: url(/assets/images/icons/bolt.svg);
+        }
+
+        a.api:hover::after, a.api:hover::before  {
+            content: url(/assets/images/icons/bolt-red.svg);
+        }
+
+        a:hover {
+            color: #AF1455;
+        }
+
+        .text {
+            color: #000;
+            font-family: VT323, serif;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .text-100 {
+            font-size: 60px;
+        }
+
+        .text-200 {
+            font-size: 32px;
+
+        }
+
+        .text-300 {
+            font-size: 24px;
+        }
+
+        @media (max-width: 924px) {
+
+            .text-100 {
+                font-size: 42px;
+            }
+
+            .text-200 {
+                font-size: 24px;
+            }
+
+            .text-300 {
+
+            }
+
+            header img {
+                display: none;
+            }
+
+        }
+
 
     </style>
 
-    <script>
-
-        let heads, torsos, legs;
-
-        let selectedHead, selectedTorso, selectedLegs;
-
-        const baseUrl = "https://monster-factory.online"
-
-        function setPartImage(part, imageElement) {
-            imageElement.src = baseUrl + part.src
-        }
-
-        function setActiveHead(part) {
-            selectedHead = part
-            setPartImage(part, headImg);
-        }
-
-        function setActiveLegs(part) {
-            selectedLegs = part
-            setPartImage(part, legImg)
-        }
-
-        function setActiveTorso(part) {
-            selectedTorso = part
-            setPartImage(part, torsoImg)
-        }
-
-        window.addEventListener("load", () => {
-
-
-            Promise
-                .all([
-                    fetch(`${baseUrl}/part?segment=HEAD&category=MONSTER`).then(res => res.json()),
-                    fetch(`${baseUrl}/part?segment=TORSO&category=MONSTER`).then(res => res.json()),
-                    fetch(`${baseUrl}/part?segment=LEGS&category=MONSTER`).then(res => res.json()),
-                ])
-                .then(([_heads, _toros, _legs]) => {
-
-                    console.log(_heads)
-
-                    heads = _heads
-                    torsos = _toros
-                    legs = _legs
-
-                    setActiveHead(heads[0], headImg)
-                    setActiveTorso(torsos[0], torsoImg)
-                    setActiveLegs(legs[0], legImg)
-
-                    function buildClickHandler(collection, selected, setter, direction) {
-                        const cur = collection.indexOf(selected)
-                        const newPart = collection.at((cur + direction) % collection.length)
-                        setter(newPart)
-                    }
-
-                    const BACK = -1
-                    const FORWARD = 1
-
-
-                    headLeft.addEventListener("click", () => buildClickHandler(heads, selectedHead, setActiveHead, BACK))
-                    headRight.addEventListener("click", () => buildClickHandler(heads, selectedHead, setActiveHead, FORWARD))
-                    torsoLeft.addEventListener("click", () => buildClickHandler(torsos, selectedTorso, setActiveTorso, BACK))
-                    torsoRight.addEventListener("click", () => buildClickHandler(torsos, selectedTorso, setActiveTorso, FORWARD))
-                    legLeft.addEventListener("click", () => buildClickHandler(legs, selectedLegs, setActiveLegs, BACK))
-                    legRight.addEventListener("click", () => buildClickHandler(legs, selectedLegs, setActiveLegs, FORWARD))
-
-                    create.addEventListener("click", () => {
-
-                        error.innerText = ""
-
-                        fetch(`${baseUrl}/monster`, {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                head: selectedHead.id,
-                                leg: selectedLegs.id,
-                                torso: selectedTorso.id,
-                                name: "asdkadld"
-                            }),
-                        })
-                            .then((res) => {
-                                if(!res.ok) {
-                                    res.json().then(res => error.innerText = res.message)
-                                }
-                            })
-
-
-                    })
-
-                })
-                .catch((err) => {
-                    alert("Failed to load monster parts :(")
-                    console.error("Failed to load monster parts", err)
-                })
-
-
-
-        });
-
-    </script>
-
 </head>
-<body>
-<div class="frame">
-    <div class="container">
-        <h1>Monster Factory</h1>
-        <div class="controls">
-            <div class="left-sliders">
-                <div class="slider">
-                    <button id="headLeft"> <img class="arrow-icon" src="https://monster-factory.online/assets/images/icons/left-arrow.svg"> </button>
-                </div>
-                <div class="slider">
-                    <button id="torsoLeft"> <img class="arrow-icon" src="https://monster-factory.online/assets/images/icons/left-arrow.svg"></button>
-                </div>
-                <div class="slider">
-                    <button id="legLeft"> <img class="arrow-icon" src="https://monster-factory.online/assets/images/icons/left-arrow.svg"></button>
-                </div>
-            </div>
-            <div class="monster-selector">
-                <img id="headImg">
-                <img id="torsoImg">
-                <img id="legImg">
-            </div>
-            <div class="right-sliders">
-                <div class="slider">
-                    <button id="headRight"> <img class="arrow-icon" src="https://monster-factory.online/assets/images/icons/right-arrow.svg"> </button>
-                </div>
-                <div class="slider">
-                    <button id="torsoRight"> <img class="arrow-icon" src="https://monster-factory.online/assets/images/icons/right-arrow.svg"></button>
-                </div>
-                <div class="slider">
-                    <button id="legRight"> <img class="arrow-icon" src="https://monster-factory.online/assets/images/icons/right-arrow.svg"></button>
-                </div>
-            </div>
-        </div>
-        <span id="error" class="error"></span>
-        <label>
-            Name
-            <input id="name">
-        </label>
-        <button class="submit" id="create">Create Monster</button>
-    </div>
 
-</div>
+<body>
+
+<header>
+    <img class="small" src="/assets/images/zombie/zombie.png" alt="zombie icon"/>
+    <img class="medium" src="/assets/images/witch/witch.png" alt="witch icon"/>
+    <h1 class="text text-100">Monster Factory</h1>
+    <img class="medium" src="/assets/images/werewolf/werewolf.png" alt="werewolf icon"/>
+    <img class="small" src="/assets/images/vampire/vampire.png" alt="vampire icon"/>
+</header>
+
+<section class="resources">
+
+    <h6 class="text text-300" style="margin-top: 20px; padding-left: 12px; padding-right: 12px; max-width: 700px;">
+        This is an exercise in building web applications. The following should be everything you need to get started.
+    </h6>
+
+    <nav>
+        <a class="briefcase text text-200" href="https://monster-factory.online/requirements">Business Requirements</a>
+        <a class="figma text text-200" href="https://www.figma.com/file/rWjj8Ot4XwtCxNYWy3tee2/Monster-Factory?type=design&node-id=0%3A1&mode=design&t=OO0h919uagLWHNgE-1" >Figma Design</a>
+        <a class="api text text-200" href="https://monster-factory.online/openapi">API Documentation</a>
+    </nav>
+
+</section>
 
 </body>
-</html>>
+
+
+</html>
