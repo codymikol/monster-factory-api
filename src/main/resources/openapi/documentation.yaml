@@ -25,19 +25,19 @@ paths:
       parameters:
         - name: segment
           in: query
-          description: Which segment to filter by
+          description: Which segment to filter by [HEAD,TORSO,LEGS]
           schema:
             type: string
             enum: [HEAD,TORSO,LEGS]
         - name: category
           in: query
-          description: Which category to filter by
+          description: Which category to filter by [OCCUPATION,MONSTER]
           schema:
             type: string
             enum: [OCCUPATION,MONSTER]
         - name: creature
           in: query
-          description: Which creature to filter by
+          description: Which creature to filter by [ZOMBIE,VAMPIRE,GHOST,WEREWOLF,WITCH,ASTRONAUT,TEACHER,PLUMBER,PROGRAMMER,ARTIST]
           schema:
             type: string
             enum: [ZOMBIE,VAMPIRE,GHOST,WEREWOLF,WITCH,ASTRONAUT,TEACHER,PLUMBER,PROGRAMMER,ARTIST]
