@@ -8,6 +8,8 @@ import java.util.*
 
 private fun String.titlecase() = replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
+private val baseUrl = "https://monster-factory.online"
+
 data class MonsterPart(
     val src: String,
     val id: String,
@@ -21,7 +23,7 @@ data class MonsterPart(
         creature = this.creature.name,
         segment = this.segment.name,
         category = this.category.name,
-        src = this.src,
+        src = baseUrl + this.src,
     )
 
 }

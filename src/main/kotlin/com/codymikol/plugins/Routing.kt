@@ -31,7 +31,9 @@ fun Application.configureRouting() {
 
     routing {
 
-        openAPI(path="openapi", swaggerFile = "openapi/documentation.yaml")
+        openAPI(path="openapi", swaggerFile = "openapi/documentation.yaml") {
+
+        }
 
         get("/part") {
 

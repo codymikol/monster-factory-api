@@ -1,0 +1,246 @@
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+    <link rel="preload"
+          href="/assets/images/icons/back-red.svg"
+          as="image"
+          type="image/svg+xml"/>
+
+    <title>Monster Factory</title>
+
+    <style>
+
+        p {
+            margin-top: 20px;
+            padding-left: 12px;
+            padding-right: 12px;
+            max-width: 700px;
+        }
+
+        body {
+            background: linear-gradient(218deg, #EE9F9A 8.39%, #CAF1CC 94.08%);
+            width: 100vw;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img.medium {
+            height: 160px;
+            width: 160px;
+        }
+
+        img.small {
+            height: 120px;
+            width: 120px;
+            position: relative;
+            top: 10px;
+        }
+
+        section.resources {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        a {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        a:hover {
+            color: #AF1455;
+        }
+
+        a.back {
+            font-size: 32px;
+            width: 100%;
+            text-align: left;
+        }
+
+        a.back::before  {
+            margin-right: 12px;
+            content: url(/assets/images/icons/back.svg);
+        }
+
+        a.back:hover::before  {
+            content: url(/assets/images/icons/back-red.svg);
+        }
+
+        img.example {
+            margin-right: 12px;
+        }
+
+        .text {
+            color: #000;
+            font-family: VT323, serif;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .text-100 {
+            font-size: 60px;
+        }
+
+        .text-200 {
+            font-size: 32px;
+
+        }
+
+        .text-300 {
+            font-size: 24px;
+        }
+
+        @media (max-width: 924px) {
+
+            .text-100 {
+                font-size: 42px;
+            }
+
+            .text-200 {
+                font-size: 24px;
+            }
+
+            .text-300 {
+
+            }
+
+            header img {
+                display: none;
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+    <img class="small" src="/assets/images/zombie/zombie.png" alt="zombie icon"/>
+    <img class="medium" src="/assets/images/witch/witch.png" alt="witch icon"/>
+    <h1 class="text text-100">Monster Factory</h1>
+    <img class="medium" src="/assets/images/werewolf/werewolf.png" alt="werewolf icon"/>
+    <img class="small" src="/assets/images/vampire/vampire.png" alt="vampire icon"/>
+</header>
+
+<section class="resources">
+
+    <div style="max-width: 700px; width: 100%">
+        <a class="back text text-200" href="https://monster-factory.online">Back</a>
+    </div>
+
+    <p class="text text-300">
+        In this challenge, you will be building a <b>monster factory component</b> that will allow you to mix and match
+        <b>heads,
+            torsos, and legs</b> to create a unique <b>monster</b> using the <a
+            href="https://monster-factory.online/openapi#api-Monster-createMonster">Monster Factory API</a>
+        with designs outlined in the <a href="https://monster-factory.online/openapi#api-Monster-createMonster">Figma
+        Document</a>
+        <br>
+        <br>
+        During this challenge you should first prioritize <b>layout / functionality</b>, and then if time allows, the
+        <b>styling</b> from the <a href="https://monster-factory.online/openapi#api-Monster-createMonster">Figma
+        Document</a>
+    </p>
+
+    <p class="text text-300">
+        <img class="example" height="150px" width="150px" style="float: left"
+             src="/assets/images/requirements/overlay.png" alt="overlaying images"/>
+        Using the <a href="https://monster-factory.online/openapi#api-Part-getAllMonsterParts">Parts API</a>, you can
+        query information about different
+        <b>parts</b> that can be used as building blocks to create a <b>monster</b>.
+        <br>
+        <br>
+        Each part has a <b>src</b> field that points to a <b>500x500 png image url</b>. By overlaying one image of each
+        part
+        type you can draw a full <b>monster</b>.
+        <br>
+        <br>
+        Note that at this time we are only interested in parts with a <b>category</b> of <b>MONSTER</b> as it seems the
+        art department
+        has slacked off and failed to draw any assets for other categories...
+    </p>
+
+    <p class="text text-300">
+        <img class="example" height="150px" style="float: left" src="/assets/images/requirements/controls.png"
+             alt="controls"/>
+
+        The <b>arrow buttons</b> to the left and right of your viewport should allow you to cycle through the various
+        heads, torsos, and legs available
+        in the <a href="https://monster-factory.online/openapi#api-Part-getAllMonsterParts">Parts API</a>.
+
+
+    </p>
+
+    <p class="text text-300">
+        <img class="example" height="250px" style="float: left" src="/assets/images/requirements/create.png"
+             alt="controls"/>
+        Once you are satisfied with your customized <b>monster</b>, you should be able to give it a name and create it
+        with the
+        <a href="https://monster-factory.online/openapi#api-Monster-createMonster">Monster API</a>
+        upon pressing the <b>create monster button</b>
+        <br>
+        <br>
+        Note if that you don't have a sufficiently interesting monster ( all parts are from the same <b>CREATURE</b> ),
+        you will receive a <br>Boring Monster Error</br> This should be displayed below the viewport as shown in the <a
+            href="https://monster-factory.online/openapi#api-Monster-createMonster">Figma Document</a>
+    </p>
+
+    <p class="text text-300">
+        Once you have successfully created a <b>monster</b> via the <a
+            href="https://monster-factory.online/openapi#api-Monster-createMonster">Monster API</a>
+        your monster will be given an <b>id</b>, use this to redirect the user to <u>https://monster-factory.online/monster/{monsterId}</u>
+        If the monster in the page looks like the one in your preview window and has the correct name, you have
+        successfully completed the <b>layout / functionality</b>
+        part of this challenge, Congratulations!
+    </p>
+
+    <p class="text text-300">
+
+        With your remaining time, focus on implementing the design laid out in the <a
+            href="https://monster-factory.online/openapi#api-Monster-createMonster">Figma
+        Document</a> using the additional assets provided below.
+
+        <br>
+        <br>
+    </p>
+
+    <pre id="googleFontPre"/>
+
+    <script>
+        googleFontPre.innerText = `Arrow Icons
+
+https://monster-factory.online/assets/images/icons/left-arrow.svg
+https://monster-factory.online/assets/images/icons/right-arrow.svg
+
+Google Font Used
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">`
+    </script>
+
+
+</section>
+
+</body>
+
+
+</html>
